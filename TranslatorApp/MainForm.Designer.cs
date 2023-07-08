@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TranslatorApp));
             groupBox1 = new GroupBox();
             label2 = new Label();
             ToComboBox = new ComboBox();
@@ -38,6 +39,7 @@
             TranslateButton = new Button();
             TranslateGroupBox = new GroupBox();
             ResultTextBox = new TextBox();
+            PlaySoundLabel = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             TranslateGroupBox.SuspendLayout();
@@ -52,7 +54,7 @@
             groupBox1.Controls.Add(FromComboBox);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(497, 71);
+            groupBox1.Size = new Size(497, 87);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Languages";
@@ -107,7 +109,7 @@
             groupBox2.Controls.Add(ContentTextBox);
             groupBox2.Location = new Point(12, 102);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(497, 246);
+            groupBox2.Size = new Size(497, 262);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Translate";
@@ -125,10 +127,11 @@
             // TranslateGroupBox
             // 
             TranslateGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TranslateGroupBox.Controls.Add(PlaySoundLabel);
             TranslateGroupBox.Controls.Add(ResultTextBox);
             TranslateGroupBox.Location = new Point(12, 368);
             TranslateGroupBox.Name = "TranslateGroupBox";
-            TranslateGroupBox.Size = new Size(497, 252);
+            TranslateGroupBox.Size = new Size(497, 272);
             TranslateGroupBox.TabIndex = 3;
             TranslateGroupBox.TabStop = false;
             TranslateGroupBox.Text = "Result";
@@ -141,15 +144,25 @@
             ResultTextBox.Name = "ResultTextBox";
             ResultTextBox.ReadOnly = true;
             ResultTextBox.ScrollBars = ScrollBars.Horizontal;
-            ResultTextBox.Size = new Size(480, 214);
+            ResultTextBox.Size = new Size(480, 195);
             ResultTextBox.TabIndex = 1;
+            // 
+            // PlaySoundLabel
+            // 
+            PlaySoundLabel.Image = (Image)resources.GetObject("PlaySoundLabel.Image");
+            PlaySoundLabel.Location = new Point(428, 230);
+            PlaySoundLabel.Name = "PlaySoundLabel";
+            PlaySoundLabel.Size = new Size(58, 33);
+            PlaySoundLabel.TabIndex = 2;
+            PlaySoundLabel.Visible = false;
+            PlaySoundLabel.Click += PlaySoundLabel_Click;
             // 
             // TranslatorApp
             // 
             AcceptButton = TranslateButton;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(521, 636);
+            ClientSize = new Size(521, 652);
             Controls.Add(TranslateGroupBox);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -179,5 +192,6 @@
         private Button TranslateButton;
         private GroupBox TranslateGroupBox;
         private TextBox ResultTextBox;
+        private Label PlaySoundLabel;
     }
 }

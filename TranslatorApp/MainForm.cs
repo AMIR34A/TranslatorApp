@@ -1,4 +1,5 @@
 using GoogleTranslateApi;
+using System.Speech.Synthesis;
 using TranslatorApp.TranslateLayer;
 namespace TranslatorApp
 {
@@ -23,6 +24,14 @@ namespace TranslatorApp
         {
             string translatedContent = await translate.TranslateContent((LanguagesType)FromComboBox.SelectedValue, (LanguagesType)ToComboBox.SelectedValue, ContentTextBox.Text);
             ResultTextBox.Text = translatedContent;
+            if (Enum.GetName(typeof(LanguagesType), ToComboBox.SelectedValue) == "English")
+                PlaySoundLabel.Visible = true;
+        }
+
+        private void PlaySoundLabel_Click(object sender, EventArgs e)
+        {
+            SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
+            speechSynthesizer.Speak(ResultTextBox.Text);
         }
     }
 }
