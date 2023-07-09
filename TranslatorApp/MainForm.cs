@@ -22,16 +22,34 @@ namespace TranslatorApp
 
         private async void TranslateButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(ContentTextBox.Text))
+            {
+                MessageBox.Show("Write a text for translating", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string translatedContent = await translate.TranslateContent((LanguagesType)FromComboBox.SelectedValue, (LanguagesType)ToComboBox.SelectedValue, ContentTextBox.Text);
             ResultTextBox.Text = translatedContent;
-            if (Enum.GetName(typeof(LanguagesType), ToComboBox.SelectedValue) == "English")
-                PlaySoundLabel.Visible = true;
+            PlaySoundLabel.Visible = true;
         }
 
         private void PlaySoundLabel_Click(object sender, EventArgs e)
         {
             SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
-            speechSynthesizer.Speak(ResultTextBox.Text);
+            speechSynthesizer.SpeakAsync(ResultTextBox.Text);
+        }
+
+        private void TransferLabel_Click(object sender, EventArgs e)
+        {
+            var fromLanguge = FromComboBox.SelectedValue;
+            var toLanguage = ToComboBox.SelectedValue;
+            FromComboBox.SelectedItem = toLanguage;
+            ToComboBox.SelectedItem = fromLanguge;
+            if (!string.IsNullOrEmpty(ContentTextBox.Text) && !string.IsNullOrEmpty(ResultTextBox.Text))
+            {
+                string temp = ContentTextBox.Text;
+                ContentTextBox.Text = ResultTextBox.Text;
+                ResultTextBox.Text = temp;
+            }
         }
     }
 }
